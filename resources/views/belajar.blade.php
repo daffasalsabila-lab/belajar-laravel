@@ -15,6 +15,11 @@
     <a href="{{ route('perkalian') }}">Perkalian</a>
 
     <a href="{{ url()->previous() }}">Kembali</a>
+
+    <main>
+        {{-- directive --}}
+        @yield('content')
+    </main>
 </body>
 
 </html>

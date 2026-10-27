@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BelajarController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,3 +23,12 @@ Route::post('actionBagi', [BelajarController::class, 'actionBagi'])->name('actio
 
 Route::get('perkalian', [BelajarController::class, 'kali'])->name('perkalian');
 Route::post('actionKali', [BelajarController::class, 'actionKali'])->name('actionKali');
+
+// prefix
+Route::prefix('admin')->name('admin.')->group(function () {
+    // mau melihat tampilan login
+    Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login']);
+    Route::post('/actionLogin', [\App\Http\Controllers\LoginController::class, 'actionLogin'])->name('actionLogin');
+    Route::resource('/dashboard', \App\Http\Controllers\DashboardController::class);
+    Route::resource('/user', \App\Http\Controllers\UserController::class);
+});
