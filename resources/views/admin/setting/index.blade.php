@@ -6,7 +6,8 @@
 
 @section('content')
 
-    <form action="{{ route('admin.settings.update') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.settings.update') }}" method="post"
+    enctype="multipart/form-data">
         @csrf
 
         <ul class="nav nav-tabs mb-3" id="defaultTabs" role="tablist">
@@ -52,35 +53,43 @@
 
                     </textarea>
                 </div>
-                 <div class="mb-3">
+
+                <div class="mb-3">
+                    <div class="d-flex justify-between">
+                <div>
                     <label for="" class="form-label">Logo Utama Website</label>
-                    <input type="file" name="site_logo"
-                    value="{{ old('site_logo', $setting['site_logo'] ?? "") }}">
+                    <input type="file" name="site_logo">
+                    {{-- value="{{ old('site_logo', $setting['site_logo'] ?? "") }}"> --}}
+                    </div>
+                        <div>
+                            <img width="100"
+                            src="{{ asset('storage/' . $setting['site_logo']->value) }}" alt="Site Logo">
+                        </div>
+                    </div>
                 </div>
 
-            </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <h5 class="fw-bold text-main mb-3">Kontak & Lokasi</h5>
 
                  <div class="mb-3">
                     <label for="" class="form-label">Nomor Telepon Utama</label>
                     <input type="text" class="form-control" name="phone"
-                    value="{{ old('phone', $setting['phone'] ?? "") }}">
+                    value="{{ old('phone', $setting['phone']->value) }}">
                 </div>
                  <div class="mb-3">
                     <label for="" class="form-label">Email Upload</label>
                     <input type="text" class="form-control" name="email_upload"
-                    value="{{ old('email_upload', $setting['email_upload'] ?? "") }}">
+                    value="{{ old('email_upload', $setting['email_upload']->value) }}">
                 </div>
                  <div class="mb-3">
                     <label for="" class="form-label">Email Order</label>
                     <input type="text" class="form-control" name="email_order"
-                    value="{{ old('email_order', $setting['email_order'] ?? "") }}">
+                    value="{{ old('email_order', $setting['email_order']->value) }}">
                 </div>
                  <div class="mb-3">
                     <label for="" class="form-label">Alamat</label>
-                    <textarea name="address" id="" cols="30" rows="10" class="form-control"
-                    value="{{ old('address', $setting['address'] ?? "") }}">
+                    <textarea name="address" id="" cols="30" rows="10" class="form-control">
+                        {{ old('address', $setting['address']->value) }} </textarea>
 
                     </textarea>
                 </div>

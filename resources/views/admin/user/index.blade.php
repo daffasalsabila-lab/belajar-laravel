@@ -3,7 +3,7 @@
 @section('subtitle', 'Kelola akun yang memiliki akses ke dalam Admin Panel')
 
 @section('content')
-<div class="mb-3" align=""right>
+<div class="mb-3" align="right">
     <a href="{{ route('admin.user.create') }}" class="btn-table-action">
         <i class="bi bi-person-add"></i> Tambah User
     </a>

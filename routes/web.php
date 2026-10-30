@@ -1,13 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BelajarController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
 // get, post, put, delete
 // untuk mencari url nya dengan http://localhost:8000/belajar jadi belajar itu sebagai alamat nya
 Route::get('belajar', [BelajarController::class, 'index']);
@@ -29,8 +27,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // mau melihat tampilan login
     Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login']);
     Route::post('/actionLogin', [\App\Http\Controllers\LoginController::class, 'actionLogin'])->name('actionLogin');
+
     Route::resource('/dashboard', \App\Http\Controllers\DashboardController::class);
     Route::resource('/user', \App\Http\Controllers\UserController::class);
+    Route::resource('category', \App\Http\Controllers\CategoryController::class);
 
     Route::get('/settings', [\App\Http\Controllers\SettingController::class,'index'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\SettingController::class,'update'])->name('settings.update');
